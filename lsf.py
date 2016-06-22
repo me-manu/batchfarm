@@ -173,7 +173,7 @@ def submit_lsf(script,config,option,njobs,**kwargs):
     logdir:		string, local directory for log files
     """
     yamlfile = join(kwargs['tmpdir'],'{0[jname]:s}_{1[configname]:s}.yaml'.format(kwargs,config))
-    yaml.dump(config,open(yamlfile,'w'))
+    yaml.dump(config, stream = open(yamlfile, 'w'), default_flow_style=False)
     # test yaml file
     par	= yaml.load(open(yamlfile))
 
