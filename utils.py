@@ -5,8 +5,9 @@ utility functions
 # --- Imports -------------- #
 import sys
 from glob import glob
-from subprocess import call
+from subprocess import call,check_call
 from os.path import *
+from os import access,R_OK
 from numpy import isscalar,array,where,sqrt,where,log10,linspace,cumsum,argmin,abs,empty,pi
 import numpy as np
 from time import sleep
