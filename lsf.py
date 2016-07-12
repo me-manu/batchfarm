@@ -87,7 +87,8 @@ def init_lsf(local_id = 0):
 	sleep(20.)
     except ValueError:
 	job_id 	    	= local_id
-	tmpdir		= environ["PWD"]
+	#tmpdir		= environ["PWD"]
+	tmpdir		= mkdir(join(environ["PWD"],'tmp/'))
 
     #system('export PFILES={0:s}:$PFILES'.format(tmpdir))
     #sleep(10.)

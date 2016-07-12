@@ -12,6 +12,7 @@ from numpy import isscalar,array,where,sqrt,where,log10,linspace,cumsum,argmin,a
 import numpy as np
 from time import sleep
 from numpy import string_
+from subprocess import check_call
 import logging
 import cPickle
 import gzip
@@ -309,7 +310,7 @@ def zipfiles(filename,output,nodir = False):
 	    call(['tar']+['-czf']+[output]+[filename])
     return output
 
-def copy2scratch(filename,dir,zipping = False, dry = False):
+def copy2scratch(filename,dir,zipping = False, dry = False, stime = 10.):
     """
     Copy a file or a list of files 
 
@@ -341,19 +342,19 @@ def copy2scratch(filename,dir,zipping = False, dry = False):
 	    else:
 		check_call(['cp'] + filename + [dir])
 	    logging.info('copied {0:s} to {1:s}'.format(filename,dir))
-	    sleep(10.)
+	    sleep(stime)
 	return dir
     elif type(filename) == dict:
 	if not dry:
 	    check_call(['cp'] + filename.values() + [dir])
 	    logging.info('copied {0:s} to {1:s}'.format(filename,dir))
-	    sleep(10.)
+	    sleep(stime)
 	return dir
     elif type(filename) == str or type(filename) == string_:
 	if not dry:
 	    check_call(['cp',filename,dir])
 	    logging.info('copied {0:s} to {1:s}'.format(filename,dir))
-	    sleep(10.)
+	    sleep(stime)
 	return join(dir,basename(filename))
     else:
 	raise TypeError('*** filename must be of type str or list, is {0}'.format(type(filename)))
