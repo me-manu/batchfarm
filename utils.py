@@ -428,3 +428,17 @@ def init_logging(level, color = False):
 	logging.basicConfig(level=level,stream = sys.stderr, format='%(filename)10s:%(lineno)4s --- %(levelname)7s: %(message)s')
 
     return
+
+def printOneLine(string):
+    """
+    Print an output on the same line
+
+    Parameter
+    ---------
+    string:	str,the string to be printed
+    """
+    sys.stdout.write(string)
+    sys.stdout.flush()
+    lenStr = len(string)
+    sys.stdout.write("\b"*lenStr)
+    return
