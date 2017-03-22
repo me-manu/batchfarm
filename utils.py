@@ -200,7 +200,7 @@ def missing_files(fname,fn, missing = True, minimum = 0, num = 5, split = '.dat.
     list with missing file numbers
     """
     files = glob(fname)
-    idxs  = array(map( lambda f: int(basename(f).split(split)[0][-5:]), files))
+    idxs  = array(map( lambda f: int(basename(f).split(split)[0][-num:]), files))
 
     miss = []
     logging.debug('number of files that should be there: {0:n}'.format(fn))
